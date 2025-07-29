@@ -1,27 +1,11 @@
-plugins {
-    id "com.jfrog.bintray" version "1.7.3"
-    id "com.github.dcendents.android-maven" version "2.0"
-}
-
 apply plugin: 'com.android.library'
 
-ext {
-    bintrayName = 'terminal-emulator'
-    publishedGroupId = 'com.termux'
-    libraryName = 'TerminalEmulator'
-    artifact = 'terminal-emulator'
-    libraryDescription = 'The terminal emulator used in Termux'
-    siteUrl = 'https://github.com/termux/termux'
-    gitUrl = 'https://github.com/termux/termux.git'
-    libraryVersion = '0.52'
-}
-
 android {
-    compileSdkVersion 27
+    compileSdkVersion 30
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 27
+        targetSdkVersion 30
 
         externalNativeBuild {
             ndkBuild {
@@ -57,5 +41,3 @@ tasks.withType(Test) {
 dependencies {
     testImplementation 'junit:junit:4.12'
 }
-
-apply from: '../scripts/bintray-publish.gradle'

@@ -27,9 +27,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.SET_WALLPAPER" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.TRANSMIT_IR" />
+    
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -74,12 +72,7 @@
         android:name="android.hardware.wifi"
         android:required="false" />
 
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <!--
-       This permission is not used, but a permission is needed on the sharedfiles contentprovider,
-         which will always use FLAG_GRANT_READ_URI_PERMISSION.
-    -->
+    
     <permission android:name="com.termux.sharedfiles.READ" />
 
     <application
@@ -109,6 +102,7 @@
         <activity android:name=".MainActivity"></activity>
         <activity
             android:name=".app.TermuxActivity"
+            android:exported="true"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:resizeableActivity="true"
@@ -151,6 +145,7 @@
             android:theme="@android:style/Theme.Material.Light.DarkActionBar" />
         <activity
             android:name=".filepicker.TermuxFileReceiverActivity"
+            android:exported="true"
             android:excludeFromRecents="true"
             android:label="@string/application_name"
             android:noHistory="true"

@@ -1,19 +1,30 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 30
+
+    signingConfigs {
+        release {
+            if (System.getenv("SIGNING_KEY_STORE_PASSWORD")) {
+                storeFile file('release.keystore')
+                storePassword System.getenv("SIGNING_KEY_STORE_PASSWORD")
+                keyAlias System.getenv("SIGNING_KEY_ALIAS")
+                keyPassword System.getenv("SIGNING_KEY_PASSWORD")
+            }
+        }
+    }
 
     dependencies {
-        implementation 'com.android.support:design:27.1.1'
-        implementation 'com.android.support:support-annotations:27.1.1'
-        implementation "com.android.support:support-core-ui:27.1.1"
+        implementation 'com.android.support:design:28.0.0'
+        implementation 'com.android.support:support-annotations:28.0.0'
+        implementation "com.android.support:support-core-ui:28.0.0"
         implementation project(":terminal-view")
     }
 
     defaultConfig {
         applicationId "com.termux"
         minSdkVersion 21
-        targetSdkVersion 27
+        targetSdkVersion 30
         versionCode 64
         versionName "0.64"
     }
@@ -23,6 +34,7 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
